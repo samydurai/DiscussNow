@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class TopicSaveResponse {
+
   List<TopicResourceObject> topicResourceObjects;
   Map<Long, Long> idMap;
 

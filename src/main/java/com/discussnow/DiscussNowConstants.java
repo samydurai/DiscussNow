@@ -12,6 +12,7 @@ public interface DiscussNowConstants {
   String TOPIC = "/topic";
   String USER = "/user";
   String RESPONSE = "/response";
+  String REPLY = "/reply";
 
   //Property
   String USER_DETAIL_EMAIL = "email";

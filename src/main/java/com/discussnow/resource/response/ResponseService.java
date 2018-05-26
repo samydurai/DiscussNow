@@ -34,8 +34,10 @@ public class ResponseService extends ServiceUtil {
     }
 
     if (validateSaveRequest(responseSaveRequest, SaveAction.UPDATE)) {
-      for (ResponseResourceObject responseResourceObject : responseSaveRequest.getResponse().getUpdatedItems()) {
-        Response response = convertResponseResourceObject(responseResourceObject, SaveAction.UPDATE);
+      for (ResponseResourceObject responseResourceObject : responseSaveRequest.getResponse()
+          .getUpdatedItems()) {
+        Response response = convertResponseResourceObject(responseResourceObject,
+            SaveAction.UPDATE);
         response = responsePersistenceRules.update(response, loggedInUserDetails);
         responseResourceObjects.add(new ResponseResourceObject(response));
         idMap.put(responseResourceObject.getResponseId(), response.getResponseId());
@@ -43,8 +45,10 @@ public class ResponseService extends ServiceUtil {
     }
 
     if (validateSaveRequest(responseSaveRequest, SaveAction.CREATE)) {
-      for (ResponseResourceObject responseResourceObject : responseSaveRequest.getResponse().getAddedItems()) {
-        Response response = convertResponseResourceObject(responseResourceObject, SaveAction.CREATE);
+      for (ResponseResourceObject responseResourceObject : responseSaveRequest.getResponse()
+          .getAddedItems()) {
+        Response response = convertResponseResourceObject(responseResourceObject,
+            SaveAction.CREATE);
         response = responsePersistenceRules.create(response, loggedInUserDetails);
         responseResourceObjects.add(new ResponseResourceObject(response));
         idMap.put(responseResourceObject.getResponseId(), response.getResponseId());
@@ -71,7 +75,8 @@ public class ResponseService extends ServiceUtil {
     return response;
   }
 
-  private void validateResponseId(ResponseResourceObject responseResourceObject, SaveAction saveAction) {
+  private void validateResponseId(ResponseResourceObject responseResourceObject,
+      SaveAction saveAction) {
     if (responseResourceObject.getResponseId() == null) {
       throw new RuntimeException("Id is required to create a response");
     }
@@ -81,7 +86,8 @@ public class ResponseService extends ServiceUtil {
     }
 
     if (responseResourceObject.getResponseId() > 0 && SaveAction.CREATE == saveAction) {
-      throw new RuntimeException("Create operation cannot have the primary key set in the request payload");
+      throw new RuntimeException(
+          "Create operation cannot have the primary key set in the request payload");
     }
   }
 
