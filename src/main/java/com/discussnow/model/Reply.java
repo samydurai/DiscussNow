@@ -8,6 +8,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -19,7 +21,8 @@ public class Reply extends Updatable {
   private Response response;
   private Topic topic;
   private User user;
-  private Long parentReplyId;
+  private Reply parentReply;
+  private String reply;
 
   @Id
   @SequenceGenerator(name = "REPLY_SEQ", sequenceName = "REPLY_SEQ", allocationSize = 100)
@@ -63,12 +66,22 @@ public class Reply extends Updatable {
     this.user = user;
   }
 
-  @Column(name = "PARENT_REPLY_ID")
-  public Long getParentReplyId() {
-    return parentReplyId;
+  @Column(name = "REPLY", nullable = false)
+  public String getReply() {
+    return reply;
   }
 
-  public void setParentReplyId(Long parentReplyId) {
-    this.parentReplyId = parentReplyId;
+  public void setReply(String reply) {
+    this.reply = reply;
+  }
+
+  @OneToOne(fetch = FetchType.LAZY, targetEntity = Reply.class)
+  @JoinColumn(name = "PARENT_REPLY_ID", referencedColumnName = "REPLY_ID")
+  public Reply getParentReply() {
+    return parentReply;
+  }
+
+  public void setParentReply(Reply parentReply) {
+    this.parentReply = parentReply;
   }
 }

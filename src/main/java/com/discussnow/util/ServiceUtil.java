@@ -1,11 +1,15 @@
 package com.discussnow.util;
 
+import com.discussnow.model.Reply;
 import com.discussnow.model.Response;
 import com.discussnow.model.Topic;
 import com.discussnow.model.User;
+import com.discussnow.repository.ReplyRepository;
 import com.discussnow.repository.ResponseRepository;
 import com.discussnow.repository.TopicRepository;
 import com.discussnow.repository.UserRepository;
+import com.discussnow.resource.reply.ReplyConstants;
+import com.discussnow.resource.reply.exceptions.ReplyExistenceException;
 import com.discussnow.resource.response.ResponseConstants;
 import com.discussnow.resource.response.exceptions.ResponseExistenceException;
 import com.discussnow.resource.topic.TopicConstants;
@@ -32,6 +36,9 @@ public class ServiceUtil {
 
   @Autowired
   private ResponseRepository responseRepository;
+
+  @Autowired
+  private ReplyRepository replyRepository;
 
   protected Map<String, String> loadLoggedInUserDetails(Principal principal) {
     if (principal != null) {
@@ -73,5 +80,16 @@ public class ServiceUtil {
       throw new ResponseExistenceException(ResponseConstants.RESPONSE_NULL, responseId);
     }
     return response.get();
+  }
+
+  protected Reply getReply(Long replyId) throws ReplyExistenceException {
+    if (replyId != null) {
+      Optional<Reply> reply = replyRepository.findById(replyId);
+      if (!reply.isPresent()) {
+        throw new ReplyExistenceException(ReplyConstants.REPLY_DOES_NOT_EXIST, replyId);
+      }
+      return reply.get();
+    }
+    throw new RuntimeException("Unable to resolve reply id");
   }
 }

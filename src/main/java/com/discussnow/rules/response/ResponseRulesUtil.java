@@ -50,7 +50,8 @@ public class ResponseRulesUtil {
     Long userWhoCreatedTheResponse = existingResponse.getUser().getUserId();
     if (userWhoCreatedTheResponse != null) {
       if (!userWhoCreatedTheResponse.equals(loggedInUser.getUserId())) {
-        throw new ResponsePersistenceException(ResponseConstants.RESPONSE_USER_CONTEXT_ERROR, existingResponse.getResponseId());
+        throw new ResponsePersistenceException(ResponseConstants.RESPONSE_USER_CONTEXT_ERROR,
+            existingResponse.getResponseId());
       }
     }
     if (userWhoCreatedTheResponse == null) {

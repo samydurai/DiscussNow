@@ -25,35 +25,45 @@ public class TopicExceptionHandler extends ResponseEntityExceptionHandler implem
 
   @ExceptionHandler(TopicExistenceException.class)
   @ResponseBody
-  protected ResponseEntity<AbstractExceptionTemplate> handleUserExistenceError(TopicExistenceException ex) {
-    return buildExceptionTemplate(DomainObject.TOPIC, ex.getTopicId(), ex.getMessage(), TopicConstants.CREATE_TOPIC_BEFORE_READ, HttpStatus.BAD_REQUEST);
+  protected ResponseEntity<AbstractExceptionTemplate> handleUserExistenceError(
+      TopicExistenceException ex) {
+    return buildExceptionTemplate(DomainObject.TOPIC, ex.getTopicId(), ex.getMessage(),
+        TopicConstants.CREATE_TOPIC_BEFORE_READ, HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(TopicUpdateException.class)
   @ResponseBody
-  protected ResponseEntity<AbstractExceptionTemplate> handleTopicUpdateError(TopicUpdateException ex) {
-    return buildExceptionTemplate(DomainObject.TOPIC, ex.topicId, ex.getMessage(), TopicConstants.TOPIC_UPDATE_ERROR, HttpStatus.UNAUTHORIZED);
+  protected ResponseEntity<AbstractExceptionTemplate> handleTopicUpdateError(
+      TopicUpdateException ex) {
+    return buildExceptionTemplate(DomainObject.TOPIC, ex.topicId, ex.getMessage(),
+        TopicConstants.TOPIC_UPDATE_ERROR, HttpStatus.UNAUTHORIZED);
   }
 
   @ExceptionHandler(TopicDeleteException.class)
   @ResponseBody
-  protected ResponseEntity<AbstractExceptionTemplate> handleTopicDeleteError(TopicDeleteException ex) {
-    return buildExceptionTemplate(DomainObject.TOPIC, ex.topicId, ex.getMessage(), TopicConstants.TOPIC_DELETE_ERROR, HttpStatus.UNAUTHORIZED);
+  protected ResponseEntity<AbstractExceptionTemplate> handleTopicDeleteError(
+      TopicDeleteException ex) {
+    return buildExceptionTemplate(DomainObject.TOPIC, ex.topicId, ex.getMessage(),
+        TopicConstants.TOPIC_DELETE_ERROR, HttpStatus.UNAUTHORIZED);
   }
 
   @ExceptionHandler(ResponseMeaningException.class)
   @ResponseBody
-  protected ResponseEntity<AbstractExceptionTemplate> handleTopicDeleteError(ResponseMeaningException ex) {
-    return buildExceptionTemplate(DomainObject.TOPIC, ex.getTopicId(), ex.getMessage(), TopicConstants.RESPONSE_MEANING_EXCEPTION, HttpStatus.UNAUTHORIZED);
+  protected ResponseEntity<AbstractExceptionTemplate> handleTopicDeleteError(
+      ResponseMeaningException ex) {
+    return buildExceptionTemplate(DomainObject.TOPIC, ex.getTopicId(), ex.getMessage(),
+        TopicConstants.RESPONSE_MEANING_EXCEPTION, HttpStatus.UNAUTHORIZED);
   }
 
   @ExceptionHandler(UserExistenceException.class)
   @ResponseBody
-  protected ResponseEntity<AbstractExceptionTemplate> handleUserExistenceError(UserExistenceException ex) {
+  protected ResponseEntity<AbstractExceptionTemplate> handleUserExistenceError(
+      UserExistenceException ex) {
     message = ex.getMessage();
     resolution = TopicConstants.REGISTER_BEFORE_CONTRIBUTING;
     status = HttpStatus.UNAUTHORIZED;
-    AbstractExceptionTemplate exceptionTemplate = new AbstractExceptionTemplate(message, resolution, status);
+    AbstractExceptionTemplate exceptionTemplate = new AbstractExceptionTemplate(message, resolution,
+        status);
     return new ResponseEntity<>(exceptionTemplate, exceptionTemplate.getStatus());
   }
 }

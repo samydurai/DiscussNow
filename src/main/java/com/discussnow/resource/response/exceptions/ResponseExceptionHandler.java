@@ -19,14 +19,18 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler imp
 
   @ExceptionHandler(ResponseExistenceException.class)
   @ResponseBody
-  protected ResponseEntity<AbstractExceptionTemplate> handleResponseExistenceError(ResponseExistenceException ex) {
-    return buildExceptionTemplate(DomainObject.RESPONSE, ex.getResponseId(), ex.getMessage(),ResponseConstants.CREATE_RESPONSE_BEFORE_EDIT, HttpStatus.BAD_REQUEST);
+  protected ResponseEntity<AbstractExceptionTemplate> handleResponseExistenceError(
+      ResponseExistenceException ex) {
+    return buildExceptionTemplate(DomainObject.RESPONSE, ex.getResponseId(), ex.getMessage(),
+        ResponseConstants.CREATE_RESPONSE_BEFORE_EDIT, HttpStatus.BAD_REQUEST);
   }
 
   @ExceptionHandler(ResponsePersistenceException.class)
   @ResponseBody
-  protected ResponseEntity<AbstractExceptionTemplate> handleResponsePersistenceError(ResponsePersistenceException ex) {
-    return buildExceptionTemplate(DomainObject.RESPONSE, ex.getResponseId(), ex.getMessage(), NOT_APPLICABLE, HttpStatus.BAD_REQUEST);
+  protected ResponseEntity<AbstractExceptionTemplate> handleResponsePersistenceError(
+      ResponsePersistenceException ex) {
+    return buildExceptionTemplate(DomainObject.RESPONSE, ex.getResponseId(), ex.getMessage(),
+        NOT_APPLICABLE, HttpStatus.BAD_REQUEST);
   }
 
 }
