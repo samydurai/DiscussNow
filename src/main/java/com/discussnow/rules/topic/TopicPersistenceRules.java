@@ -9,13 +9,14 @@ import com.discussnow.resource.topic.exceptions.TopicCreationException;
 import com.discussnow.resource.topic.exceptions.TopicDeleteException;
 import com.discussnow.resource.topic.exceptions.TopicUpdateException;
 import com.discussnow.resource.user.exceptions.UserExistenceException;
+import com.discussnow.rules.RulesUtil;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TopicPersistenceRules {
+public class TopicPersistenceRules extends RulesUtil {
 
   @Autowired
   private TopicRulesUtil util;
@@ -93,5 +94,9 @@ public class TopicPersistenceRules {
       return topic;
     }
     return null;
+  }
+
+  public void validateUser(Map<String, String> loggedInUserDetails) throws UserExistenceException {
+    validateUserExistence(loggedInUserDetails);
   }
 }

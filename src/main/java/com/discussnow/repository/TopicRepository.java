@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface TopicRepository extends PagingAndSortingRepository<Topic, Long> {
 
   List<Topic> findAllByUser(User user);
+
+  List<Topic> searchByTitle(String searchTerm);
 }
