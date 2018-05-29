@@ -9,6 +9,7 @@ import com.discussnow.resource.topic.exceptions.TopicDeleteException;
 import com.discussnow.resource.topic.exceptions.TopicExistenceException;
 import com.discussnow.resource.topic.exceptions.TopicUpdateException;
 import com.discussnow.resource.user.exceptions.UserExistenceException;
+import com.discussnow.rules.RulesUtil;
 import com.discussnow.rules.topic.TopicPersistenceRules;
 import com.discussnow.util.ServiceUtil;
 import java.security.Principal;
@@ -145,4 +146,11 @@ public class TopicService extends ServiceUtil {
     }
   }
 
+  public List<TopicResourceObject> searchTopicByTitle(String query, Principal principal)
+      throws UserExistenceException {
+    Map<String, String> loggedInUserDetails = loadLoggedInUserDetails(principal);
+    topicPersistenceRules.validateUserExistence(loggedInUserDetails);
+    List<Topic> topics =  topicRepository.searchByTitle("%"+query+"%");
+    return topics.stream().map(TopicResourceObject::new).collect(Collectors.toList());
+  }
 }

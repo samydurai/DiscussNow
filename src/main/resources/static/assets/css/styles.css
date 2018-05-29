@@ -1,0 +1,43 @@
+.brand {
+  background: white;
+  color: orange;
+  font-family: 'Do Hyeon', sans-serif;;
+}
+
+#user-name-label {
+  color: orange;
+}
+
+.navbar {
+  background: white;
+}
+
+#main-content {
+  margin-top: 10%;
+}
+
+#user-avatar {
+  margin-top: 5%;
+  margin-bottom: auto;
+}
+
+#user-topic {
+  margin-left: 5px;
+  margin-right: 5px;
+  display: none;
+}
+
+#user-logout {
+  display: none;
+}
+
+#topic-modal-header #topic-dialog-topic-tile #topic-dialog-topic-desc{
+  font-size: medium;
+}
+
+a {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+
+

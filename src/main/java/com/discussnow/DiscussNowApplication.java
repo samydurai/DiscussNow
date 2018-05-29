@@ -4,6 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @SpringBootApplication
@@ -19,7 +20,7 @@ public class DiscussNowApplication extends WebSecurityConfigurerAdapter {
     http
         .antMatcher("/**")
         .authorizeRequests()
-        .antMatchers("/", "/exit", "/login**", "/web-resources/open/**")
+        .antMatchers("/", "/exit", "/login**", "/assets/libs/**", "/assets/css/**", "/assets/js/**")
         .permitAll()
         .anyRequest()
         .authenticated();
@@ -27,5 +28,10 @@ public class DiscussNowApplication extends WebSecurityConfigurerAdapter {
         .logoutSuccessUrl("http://localhost:8080/");
     http.csrf().disable();
 
+  }
+
+  @Override
+  public void configure(WebSecurity web) throws Exception {
+    web.ignoring().antMatchers("/topic/loadAll", "user/create");
   }
 }

@@ -11,12 +11,18 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "TOPIC")
+@NamedQueries(
+    @NamedQuery(name = "Topic.searchByTitle", query = "SELECT t from Topic t where t.title LIKE ?1")
+)
 public class Topic extends Updatable {
 
   private Long topicId;
