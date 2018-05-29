@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Discuss Now</title>
+  <script src="../../assets/libs/jquery.js"></script>
+  <script src="../../assets/libs/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../../assets/libs/bootstrap.min.css">
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid brand">
+    <div class="navbar-header">
+      <a class="navbar-brand">Discuss Now</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <div class="navbar-header">
+          <span id="user-name-label" class="navbar-brand"></span>
+        </div>
+      </li>
+      <li>
+        <button class="btn btn-outline-primary" id="sign-in">Sign In With Google</button>
+      </li>
+      <li>
+        <button class="btn btn-outline-success" id="user-topic">Start a Topic</button>
+      </li>
+      <li>
+        <button class="btn btn-outline-primary" id="user-logout">Logout</button>
+      </li>
+    </ul>
+  </div>
+</nav>
+<hr>
+
+<div class="container">
+    <div class="container">
+      <div class="row">
+        <div class="row">
+          <div class="col-2">
+            <div class="text-center">
+              <img src="" class="img-fluid rounded float-right" height="50" width="50">
+            </div>
+          </div>
+          <div class="col-10">
+            <div class="row">
+              <span class="response-user-name">Topic User Name</span>
+            </div>
+            <div class="row">
+              <span class="response-date">11/12/2018</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<script data-main="/assets/js/response/ResponseHandler" src="/assets/libs/require.js"></script>
+</body>
+</html>

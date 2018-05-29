@@ -3,29 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <title>Discuss Now</title>
-  <link rel="stylesheet" href="/web-resources/open/bootstrap.min.css">
-  <link rel="stylesheet" href="/web-resources/open/styles.css">
-  <script src="/web-resources/open/jquery-3.3.1.js"></script>
-  <script src="/web-resources/open/bootstrap.min.js"></script>
+  <script src="/assets/libs/jquery.js"></script>
+  <script src="/assets/libs/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="/assets/libs/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Do+Hyeon" rel="stylesheet">
 </head>
 <body>
-<div class="container-fluid brand">
-  <div class="row">
-    <div class="col-4">
-      <h3>Discuss Now</h3>
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid brand">
+    <div class="navbar-header">
+      <a class="navbar-brand">Discuss Now</a>
     </div>
-    <div class="offset-4 col-4">
-      <span id="user-name-label" class="text-center"></span>
-    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li>
+        <div class="navbar-header">
+          <span id="user-name-label" class="navbar-brand"></span>
+        </div>
+      </li>
+      <li>
+        <button class="btn btn-outline-primary" id="sign-in">Sign In With Google</button>
+      </li>
+      <li>
+        <button class="btn btn-outline-success" id="user-topic">Start a Topic</button>
+      </li>
+      <li>
+        <button class="btn btn-outline-primary" id="user-logout">Logout</button>
+      </li>
+    </ul>
   </div>
-</div>
+</nav>
+<hr>
 <div class="container">
-  <div class="row">
-    <div class="offset-4 col-4">
-      <button class="btn btn-outline-primary" id="google-signin">Sign In With Google</button>
+  <div class="modal" id="add-topic-modal">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <span id="topic-modal-header">Add Topic</span>
+        </div>
+        <div class="modal-body">
+          <div><span id="topic-dialog-topic-tile">Title</span> </div>
+          <textarea id="topic-title" class="form-control"></textarea>
+          <hr>
+          <div><span id="topic-dialog-topic-desc">Description</span> </div>
+          <textarea id="topic-desc" class="form-control"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Close</button>
+          <button class="btn btn-outline-success" id="topic-submit">Submit</button>
+        </div>
+      </div>
     </div>
   </div>
+
+  <div class="alert alert-danger alert-dismissible" id="topic-alert">
+    <strong>Oops!</strong> Failed to add topic. Please try again.
+  </div>
+  <div class="list-group" id="topics">
+  </div>
 </div>
-<script src="/web-resources/open/app-start.js"></script>
+<script data-main = "/assets/js/page" src="/assets/libs/require.js"></script>
 </body>
 </html>
